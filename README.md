@@ -1,4 +1,6 @@
-#So why use Scala?
+# FIX ME, please
+
+## So why use Scala?
 
 Having a language which helps write complex code with less bugs is less downtime and happier users. Writing highly concurrent, low-latency applications with the help of one of the Scala concurrency toolkits means bigger profits for the company.
 
@@ -18,13 +20,13 @@ Object-oriented structures (class inheritance, overloading, etc)
 Verbosity
 
 
-Recursion
+### Recursion
 Most if not all of modern programming languages support the notion of recursion However it plays a much bigger part in functional programming than in imperative programming. That is because when programming in a functional way, iterating over data structure recursively is not just much more elegant, but also the only way to iterate without invoking side-effects.
 
 
 
 
-Algebraic Data Types
+### Algebraic Data Types
 Algebraic data types? Aw man, what’s this fancy maths stuff? I just want to program cool stuff! Alright! I won’t go into too much detail here, so bear with me for a moment! Okay, so most functional languages allow you to define simple data types. These ADTs are simple data cointainers that can be defined recursively. They can be easily constructed and deconstructed and usually come with built in structural equality checking.
 
 All of this allows us to utilize a technique called “Pattern matching”. Pattern matching is a kind of switch-case on steroids, it can do type-testing, it can check exhaustiveness and it can destructure it’s arguments. Let’s have a look at an example written in Scala:
@@ -42,7 +44,7 @@ With pattern matching navigating and decomposing data structures becomes very co
 
 
 
-What is the difference between Cats and Scalaz?
+### What is the difference between Cats and Scalaz?
 Cats and Scalaz have the same goal: to facilitate pure functional programming in Scala applications. 
 
 Scalaz or Cats are libraries, think of them like a swiss army knife. You may only need one or two core data structures, or you may want to use tons of them, it really depends on the problem. My gateway drug into using Scalaz was needing to easily work with Future[Option[String]] types, without having to nest maps. Those are called Monad Transformers, and make life easier.
@@ -52,7 +54,7 @@ You don't extend Monad, you provide a type class instance. TypeClasses
 Eh, sort of. Cats/Scalaz will be on the classpath, so it may cause issues if another library uses a different version of Cats. But that is the case with any scala library. However it's up to you if you want to return a Scalaz type class or just always go to a standard library class.
 
 
-What is the difference between Cats and Scalaz? Which should I choose?
+### What is the difference between Cats and Scalaz? Which should I choose?
 Technical comparison: https://github.com/fosskers/scalaz-and-cats
 
 
@@ -83,7 +85,7 @@ I saw some codes in our project which can be written in a clear way with monad t
 
 ==============================================================================================
 
-About Laws 
+### About Laws 
 We covered lots of things around laws today. Why do we need laws anyway?
 
 Laws are important because laws are important is a tautological statement, but there’s a grain of truth to it. Like traffic laws dictating that we drive on one side within a patch of land, some laws are convenient if everyone follows them.
@@ -96,20 +98,20 @@ Eventually we should tie our understanding back to math. Monoid laws correspond 
 
 For the sake of learning, I think it’s ok to start out with cargo cult. We all learn language through imitation and pattern recognition.
 
-==============================================================================================
+================================
 
-Functor
-Applicatives
-Monads
-Monoids
-Semigroups
-Validated
-Kleisli
-Cartesian
-SO MANY ACRYONYMS!!!
-==============================================================================================
+- Functor  
+- Applicatives  
+- Monads  
+- Monoids  
+- Semigroups  
+- Validated  
+- Kleisli  
+- Cartesian  
+- SO MANY ACRYONYMS!!!  
+================================
 
-Typeclasses
+### Typeclasses
 
 A type class is an interface or API that represents some functionality, which we want to implement.
 
@@ -128,7 +130,7 @@ Type class Interface is expose the functionality for the user.
 
 ==============================================================================================
 
-Semigroups
+### Semigroups
 
 
 trait Semigroup[A] {
@@ -187,8 +189,8 @@ Operation: (+) Addition
 Result: 12 = 12
 
 
-==============================================================================================
-Monoids
+=============================
+### Monoids
 
 trait Monoid[A] extends Semigroup[A] {
 	def empty: A
@@ -225,15 +227,15 @@ Integer subtraction, for example, is not a monoid because subtraction is not ass
 1 - (2 - 3)
 // res16: Int = 2
 
-==============================================================================================
-Use case for Monoids & Semigroups
+================================
+###  Use case for Monoids & Semigroups
 
 They are good for combining 2 or more things of a similar nature. 
 
 data-type-a     data-type-b
 		data-stream
-==============================================================================================
-Functors
+================================
+### Functors
 
 trait Functor[F[_]] {
 	def map[A,B](fa: F[A])(f: A => B): F[B]
@@ -243,13 +245,13 @@ General structure to represent something that can be mapped over. If you have be
 
 !!! They are very common structures indeed :) !!!
 
->import cats._, data._, implicits._
->Functor[List].lift((x: Int) => x + 1)
-//res0: List[Int] => List[Int]
->res0(List(1))
-//res1: List[Int] = List(2)
-==============================================================================================
-Monads
+> import cats._, data._, implicits._  
+> Functor[List].lift((x: Int) => x + 1)  
+// res0: List[Int] => List[Int]  
+> res0(List(1))  
+// res1: List[Int] = List(2)  
+
+### Monads
 
 Monads are meant for SEQUENCING COMPUTATIONS
 
@@ -274,10 +276,10 @@ State - allows state to be "propagated"
 Eval - abstracts over eager vs lazy evalutation
 
 ==============================================================================================
-Monads example
+### Monads example
 
-> List(1,2,3) >>= (value => List(value+1))
-res0: List[Int] = List(2,3,4)
+> List(1,2,3) >>= (value => List(value+1))  
+res0: List[Int] = List(2,3,4)  
 
 
 
@@ -296,13 +298,15 @@ Monad[List].pure(4)
 > res2: List(4)
 
 This is to lift values into a context, in this case Monadic context.
-==============================================================================================
-Applicative
+
+=================================  
+### Applicative
 
 Applicatives allows for functions to be lifted over a structure (Functor).
 
 Because the function and the value it's being applied to both have structures, hence its needs to be combined.
-==============================================================================================
+
+### ================================
 
 Monad Transformers
 
@@ -332,8 +336,9 @@ In functional programming, a monad transformer is a type constructor which takes
 
 Monad transformers can be used to compose features encapsulated by monads – such as state, exception handling, and I/O – in a modular way. Typically, a monad transformer is created by generalising an existing monad; applying the resulting monad transformer to the identity monad yields a monad which is equivalent to the original monad (ignoring any necessary boxing and unboxing).
 
-==============================================================================================
-Cats:
+=======================================
+
+### Cats:
 
 Started by Erik Osheim
 
@@ -368,19 +373,18 @@ Missing (good):
 
 
 #Cats (vs #Scalaz):
-🔹CoC
-🔹Friendly (docs, English)
-🔹Strict by default
-🔹Modular + ecosystem (vs monolithic)
-🔹Good citizen (e.g. Either vs \/)
+🔹CoC  
+🔹Friendly (docs, English)  
+🔹Strict by default  
+🔹Modular + ecosystem (vs monolithic)  
+🔹Good citizen (e.g. Either vs \/)  
 
 
 If you're referring to Scalaz, that's not true, AFAIK 7.0.x is incompatible with 7.1.x, which is incompatible with 7.2.x
 
-Zero p project
 
 
-https://blog.colinbreck.com/integrating-akka-streams-and-akka-actors-part-i/
-https://blog.colinbreck.com/integrating-akka-streams-and-akka-actors-part-ii/
-https://blog.colinbreck.com/integrating-akka-streams-and-akka-actors-part-iii/
-https://blog.colinbreck.com/integrating-akka-streams-and-akka-actors-part-iv/
+- https://blog.colinbreck.com/integrating-akka-streams-and-akka-actors-part-i/
+- https://blog.colinbreck.com/integrating-akka-streams-and-akka-actors-part-ii/
+- https://blog.colinbreck.com/integrating-akka-streams-and-akka-actors-part-iii/
+- https://blog.colinbreck.com/integrating-akka-streams-and-akka-actors-part-iv/
