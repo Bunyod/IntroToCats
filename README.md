@@ -24,8 +24,6 @@ Verbosity
 Most if not all of modern programming languages support the notion of recursion However it plays a much bigger part in functional programming than in imperative programming. That is because when programming in a functional way, iterating over data structure recursively is not just much more elegant, but also the only way to iterate without invoking side-effects.
 
 
-
-
 ### Algebraic Data Types
 Algebraic data types? Aw man, what’s this fancy maths stuff? I just want to program cool stuff! Alright! I won’t go into too much detail here, so bear with me for a moment! Okay, so most functional languages allow you to define simple data types. These ADTs are simple data cointainers that can be defined recursively. They can be easily constructed and deconstructed and usually come with built in structural equality checking.
 
@@ -58,20 +56,20 @@ Eh, sort of. Cats/Scalaz will be on the classpath, so it may cause issues if ano
 Technical comparison: https://github.com/fosskers/scalaz-and-cats
 
 
-ScalaZ
+ScalaZ  
 
-Started: 2009 
-Watch: 279
-Star: 4008
-Fork: 673
-Contributors: 179
+- Started: 2009 
+- Watch: 279
+- Star: 4008
+- Fork: 673
+- Contributors: 179
 
-Cats:
-Started: 2015
-Watch: 207
-Star: 2980
-Fork: 757
-Contributors: 286
+Cats:  
+- Started: 2015
+- Watch: 207
+- Star: 2980
+- Fork: 757
+- Contributors: 286
 
 
 Scala Cats is a library which provides abstractions for functional programming in the Scala.
@@ -83,7 +81,7 @@ Foce us to learn functional programming paradigms (abstraction, patterns).
 I saw some codes in our project which can be written in a clear way with monad transformers.
 
 
-==============================================================================================
+================================
 
 ### About Laws 
 We covered lots of things around laws today. Why do we need laws anyway?
@@ -99,6 +97,8 @@ Eventually we should tie our understanding back to math. Monoid laws correspond 
 For the sake of learning, I think it’s ok to start out with cargo cult. We all learn language through imitation and pattern recognition.
 
 ================================
+
+### Category Thoery
 
 - Functor  
 - Applicatives  
@@ -128,7 +128,7 @@ Type Class Instances provides the implementation for the types
 
 Type class Interface is expose the functionality for the user. 
 
-==============================================================================================
+================================
 
 ### Semigroups
 
@@ -189,7 +189,7 @@ Operation: (+) Addition
 Result: 12 = 12
 
 
-=============================
+================================
 ### Monoids
 
 trait Monoid[A] extends Semigroup[A] {
@@ -275,7 +275,7 @@ State - allows state to be "propagated"
 
 Eval - abstracts over eager vs lazy evalutation
 
-==============================================================================================
+================================
 ### Monads example
 
 > List(1,2,3) >>= (value => List(value+1))  
@@ -299,16 +299,16 @@ Monad[List].pure(4)
 
 This is to lift values into a context, in this case Monadic context.
 
-=================================  
+================================  
 ### Applicative
 
 Applicatives allows for functions to be lifted over a structure (Functor).
 
 Because the function and the value it's being applied to both have structures, hence its needs to be combined.
 
-### ================================
+================================
 
-Monad Transformers
+### Monad Transformers
 
 
 Effectful Monads aka Eff-Monads
@@ -317,8 +317,7 @@ Effectful Monads
 
 An alternative to Monad Transformers
 
-==============================================================================================
-
+================================
 The Monad Transformer Classes
 By convention, in Cats a monad Foo will have a transformer class called FooT. In fact, many monads in Cats are defined by combining a monad transformer with the Id monad. Concretely, some of the available instances are:
 
@@ -336,7 +335,7 @@ In functional programming, a monad transformer is a type constructor which takes
 
 Monad transformers can be used to compose features encapsulated by monads – such as state, exception handling, and I/O – in a modular way. Typically, a monad transformer is created by generalising an existing monad; applying the resulting monad transformer to the identity monad yields a monad which is equivalent to the original monad (ignoring any necessary boxing and unboxing).
 
-=======================================
+================================
 
 ### Cats:
 
@@ -372,7 +371,7 @@ Missing (good):
 - Kan, Adjunction, Lens, Representable
 
 
-#Cats (vs #Scalaz):
+#Cats (vs #Scalaz):  
 🔹CoC  
 🔹Friendly (docs, English)  
 🔹Strict by default  
@@ -381,10 +380,3 @@ Missing (good):
 
 
 If you're referring to Scalaz, that's not true, AFAIK 7.0.x is incompatible with 7.1.x, which is incompatible with 7.2.x
-
-
-
-- https://blog.colinbreck.com/integrating-akka-streams-and-akka-actors-part-i/
-- https://blog.colinbreck.com/integrating-akka-streams-and-akka-actors-part-ii/
-- https://blog.colinbreck.com/integrating-akka-streams-and-akka-actors-part-iii/
-- https://blog.colinbreck.com/integrating-akka-streams-and-akka-actors-part-iv/
