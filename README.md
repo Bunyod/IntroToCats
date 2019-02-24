@@ -1,5 +1,8 @@
 # FIX ME, please
 
+
+![Cats Friendly Badge](https://typelevel.org/cats/img/cats-badge-tiny.png) 
+
 ## So why use Scala?
 
 Having a language which helps write complex code with less bugs is less downtime and happier users. Writing highly concurrent, low-latency applications with the help of one of the Scala concurrency toolkits means bigger profits for the company.
