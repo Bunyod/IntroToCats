@@ -4,6 +4,8 @@ import scala.concurrent.{ExecutionContext, Future}
 
 object Example3 extends App {
 
+  implicit val ec = scala.concurrent.ExecutionContext.global
+
   case class User(id: Long, name: String)
 
   sealed trait Error
@@ -13,7 +15,13 @@ object Example3 extends App {
   }
 
   object UserRepo {
-    def followers(userId: Long): Future[Either[Error, List[User]]] = ???
+    def followers(userId: Long): Future[Either[Error, List[User]]] =  userId match {
+      case 0L => Future { Right(List(User(1, "Michael"))) }
+      case 1L => Future { Right(List(User(0, "Vito"))) }
+      case x =>
+        println("not found")
+        Future.successful { Left(Error.UserNotFound(x)) }
+    }
   }
 
   import UserRepo.followers
@@ -31,4 +39,8 @@ object Example3 extends App {
         Future.successful(Left(e))
     }
 
+  import scala.concurrent.Await
+  import scala.concurrent.duration._
+
+  println(Await.result(isFriends3(0, 1), 1.second))
 }

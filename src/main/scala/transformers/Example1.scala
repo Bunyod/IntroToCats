@@ -12,7 +12,13 @@ object Example1 extends App {
   }
 
   object UserRepo {
-    def followers(userId: Long): Either[Error, List[User]] = ???
+    def followers(userId: Long): Either[Error, List[User]] = userId match {
+      case 0L => Right(List(User(1, "Michael")))
+      case 1L => Right(List(User(0, "Vito")))
+      case x =>
+        println("not found")
+        Left(Error.UserNotFound(x))
+    }
   }
 
   import UserRepo.followers
@@ -21,5 +27,7 @@ object Example1 extends App {
       a <- followers(user1).right
       b <- followers(user2).right
     } yield a.exists(_.id == user2) && b.exists(_.id == user1)
+
+  println(isFriends1(0, 1))
 
 }
