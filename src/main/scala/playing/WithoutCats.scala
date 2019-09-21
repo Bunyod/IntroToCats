@@ -1,4 +1,4 @@
-
+package playing
 
 object WithoutCats extends App {
 
@@ -7,8 +7,7 @@ object WithoutCats extends App {
     "Jada Pinkett" -> List("Woo", "Ali", "Gotham")
   )
 
-
-  val movies2 = Map (
+  val movies2 = Map(
     "Will Smith" -> List("Made in America"),
     "Angelina Jolie" -> List("Foxfire", "The Bone Collector", "Original")
   )
@@ -23,8 +22,6 @@ object WithoutCats extends App {
   val res = (movies1.toList ++ movies2.toList).foldLeft(dZero) {
     case (m, (k, v)) => m.updated(k, m(k) ++ v)
   }
-
-  Stream
 
   println(res)
 
