@@ -3,6 +3,18 @@ package applicatives
 import cats.implicits._
 import cats.data.{NonEmptyList, Validated, ValidatedNel}
 
+/**
+  * Collecting all the error messages
+  * what if I have to collect all the error messages happens during my computation?
+  * In this case Monad is not the right choice. Monad is for sequencing effects and short-circuiting a computation when
+  * something went wrong. You need something else which is called Applicative functor. Unlike Monads, Applicative functor
+  * encodes working with multiple independent effects.
+  * For collecting all the error messages we can use Validated type and Applicative Builder from Cats.
+  *
+  * Monad does short-circuit computation when something goes wrong meanwhile Applicative functor continues computation
+  * and collects all the results.
+  *
+  */
 object CatsStyle extends App {
 
   trait Error
